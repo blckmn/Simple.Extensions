@@ -1,0 +1,19 @@
+language: csharp  
+dist: trusty  
+dotnet: 2.1
+mono: none
+
+branches:
+  only:
+  - master
+  - release
+
+script:  
+  - bash "${TRAVIS_BUILD_DIR}/build/build.sh"
+
+deploy:
+  provider: script
+  script: bash "${TRAVIS_BUILD_DIR}/build/build.sh" deploy
+  skip_cleanup: true
+  on:
+    branch: release
