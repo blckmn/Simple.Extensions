@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Collections.Generic;
 
 namespace Simple.Extensions.String
 {
@@ -13,12 +12,7 @@ namespace Simple.Extensions.String
                 return false;
             }
 
-            if (list.Contains(value, StringComparer.CurrentCultureIgnoreCase))
-            {
-                return true;
-            }
-
-            return false;
+            return list.Contains(value, StringComparer.CurrentCultureIgnoreCase);
         }
 
         public static bool EqualsCi(this string value, string compare)
@@ -28,11 +22,7 @@ namespace Simple.Extensions.String
                 return false;
             }
 
-            if (value.Equals(compare, StringComparison.CurrentCultureIgnoreCase))
-            {
-                return true;
-            }
-            return false;
+            return value.Equals(compare, StringComparison.CurrentCultureIgnoreCase);
         }
 
         public static string[] ComplimentarySet(this string[] value, params string[] list)
@@ -42,15 +32,7 @@ namespace Simple.Extensions.String
                 return new string[0];
             }
 
-            var result = new List<string>();
-            foreach(var item in list)
-            {
-                if (item.IsAny(value))
-                {
-                    result.Add(item);
-                }
-            }
-            return result.ToArray();
+            return list.Where(item => item.IsAny(value)).ToArray();
         }
     }
 }

@@ -27,7 +27,7 @@ namespace Simple.Extensions.Data
             }
             catch (IndexOutOfRangeException)
             {
-                throw new Exception($"Field not found {fieldName}");
+                throw new Exception($"Field not found: {fieldName}");
             }
         }
 
@@ -43,6 +43,7 @@ namespace Simple.Extensions.Data
                         return true;
                     }
                 }
+
                 return false;
             }
             catch (IndexOutOfRangeException)
