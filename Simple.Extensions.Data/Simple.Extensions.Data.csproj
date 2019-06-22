@@ -2,6 +2,21 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>BLCKMN</Authors>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/blckmn/Simple.Extensions/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/blckmn/Simple.Extensions</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/blckmn/Simple.Extensions</RepositoryUrl>
+
+    <Description>Simple Extension Library for some basic and handy data extensions.</Description>
+    <Copyright>Copyright © BLCKMN 2018</Copyright>
+    <Summary>A suite of simple data extensions.</Summary>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <Title>Simple.Extensions.Data</Title>
+    <PackageId>Simple.Extensions.Data</PackageId>
+    <PackageTags>Data Extension</PackageTags>
+    
   </PropertyGroup>
 
 </Project>
