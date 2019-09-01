@@ -22,11 +22,15 @@ namespace Simple.Extensions.Data
                     return default;
                 }
 
-                return (T)result;
+                return (T) result;
             }
             catch (IndexOutOfRangeException)
             {
                 throw new Exception($"Field not found: {fieldName}");
+            }
+            catch (InvalidCastException ex)
+            {
+                throw new InvalidCastException($"Invalid cast: {typeof(T).Name}, for field: {fieldName} -> {ex.Message}", ex);
             }
         }
 
