@@ -14,10 +14,9 @@ namespace Simple.Extensions.Data
 
             try
             {
-                int index = reader.GetOrdinal(fieldName);
+                var index = reader.GetOrdinal(fieldName);
 
                 var result = reader.GetValue(index);
-
                 if (result == DBNull.Value)
                 {
                     return default;
@@ -38,7 +37,6 @@ namespace Simple.Extensions.Data
                 for (var pos = 0; pos < reader.FieldCount; pos++)
                 {
                     if (reader.GetName(pos).Equals(fieldName, StringComparison.CurrentCultureIgnoreCase))
-
                     {
                         return true;
                     }
