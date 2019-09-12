@@ -43,5 +43,10 @@ namespace Simple.Extensions.String
             }
             return value.Length <= count ? value : value.Substring(0, count);
         }
+
+        public static string NullIfEmpty(this string value)
+        {
+            return string.IsNullOrEmpty(value) ? null : value;
+        }
     }
 }
