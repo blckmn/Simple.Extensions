@@ -3,6 +3,8 @@ dist: bionic
 dotnet: 2.2
 mono: none
 
+sudo: false
+
 branches:
   only:
   - master
