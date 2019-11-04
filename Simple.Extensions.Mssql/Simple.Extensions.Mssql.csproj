@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>BLCKMN</Authors>
+    <PackageProjectUrl>https://github.com/blckmn/Simple.Extensions</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/blckmn/Simple.Extensions</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+
+    <Description>Simple Extension Library for some basic and handy MsSql extensions.</Description>
+    <Copyright>Copyright © BLCKMN 2018</Copyright>
+    <Summary>A suite of simple extensions for use with Microsoft SQL Server.</Summary>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <Title>Simple.Extensions.Mssql</Title>
+    <PackageId>Simple.Extensions.Mssql</PackageId>
+    <PackageTags>SqlServer Extension Mssql</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.3.0" />
+  </ItemGroup>
+
+</Project>
