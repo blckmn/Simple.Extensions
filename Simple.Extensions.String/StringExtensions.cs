@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Simple.Extensions.String
 {
-    public static class StringExtension
+    public static class StringExtensions
     {
         public static bool IsAny(this string value, params string[] list)
         {
