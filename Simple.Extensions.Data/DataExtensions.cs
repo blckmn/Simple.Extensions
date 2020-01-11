@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Data;
+using System.Data.Common;
 
 namespace Simple.Extensions.Data
 {
     public static class DataExtensions
     {
-        public static T GetValue<T>(this IDataReader reader, string fieldName, T defaultValue)
+        public static T GetValue<T>(this DbDataReader reader, string fieldName, T defaultValue)
         {
             if (fieldName == null)
             {
@@ -14,56 +14,36 @@ namespace Simple.Extensions.Data
 
             try
             {
-                var index = reader.GetOrdinal(fieldName);
-
-                var result = reader.GetValue(index);
-                if (result == DBNull.Value)
-                {
-                    return defaultValue;
-                }
-
-                return (T)result;
+                var column = reader.GetOrdinal(fieldName);
+                return reader.IsDBNull(column) ? defaultValue : reader.GetFieldValue<T>(column);
             }
             catch (IndexOutOfRangeException)
             {
-                throw new Exception($"Field not found: {fieldName}");
+                throw new IndexOutOfRangeException($"Field {fieldName} does not exist.");
             }
-            catch (InvalidCastException ex)
+            catch (Exception ex)
             {
-                throw new InvalidCastException($"Invalid cast: {typeof(T).Name}, for field: {fieldName} -> {ex.Message}", ex);
+                throw new Exception($"{fieldName} - {ex.Message}", ex);
             }
         }
 
-        public static T GetValue<T>(this IDataReader reader, string fieldName)
+        public static T GetValue<T>(this DbDataReader reader, string fieldName)
         {
-            if (fieldName == null)
-            {
-                throw new ArgumentNullException(nameof(fieldName));
-            }
+            return reader.GetValue<T>(fieldName, default);
+        }
 
+        public static T GetValueIfColumnExists<T>(this DbDataReader reader, string fieldName)
+        {
             try
             {
-                var index = reader.GetOrdinal(fieldName);
-
-                var result = reader.GetValue(index);
-                if (result == DBNull.Value)
-                {
-                    return default;
-                }
-
-                return (T)result;
+                return reader.GetValue<T>(fieldName, default);
             }
             catch (IndexOutOfRangeException)
             {
-                throw new Exception($"Field not found: {fieldName}");
-            }
-            catch (InvalidCastException ex)
-            {
-                throw new InvalidCastException($"Invalid cast: {typeof(T).Name}, for field: {fieldName} -> {ex.Message}", ex);
+                return default;
             }
         }
-
-        public static bool FieldExists(this IDataReader reader, string fieldName)
+        public static bool FieldExists(this DbDataReader reader, string fieldName)
         {
             try
             {
