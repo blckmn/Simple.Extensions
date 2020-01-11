@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 
 namespace Simple.Extensions.String
@@ -47,6 +48,11 @@ namespace Simple.Extensions.String
         public static string NullIfEmpty(this string value)
         {
             return string.IsNullOrEmpty(value) ? null : value;
+        }
+
+        public static string ToTitleCase(this string value)
+        {
+            return string.IsNullOrEmpty(value) ? value : CultureInfo.CurrentCulture.TextInfo.ToTitleCase(value.ToLower());
         }
     }
 }
