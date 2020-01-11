@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simple.Extensions.Data", "S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simple.Extensions.Npgsql", "Simple.Extensions.Npgsql\Simple.Extensions.Npgsql.csproj", "{DF5AC186-EFFA-47DE-BE30-DC8668EA3549}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simple.Extensions.Mssql", "Simple.Extensions.Mssql\Simple.Extensions.Mssql.csproj", "{93F67F55-45F1-49E9-9D49-12DE8B2F6748}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simple.Extensions.Mssql", "Simple.Extensions.Mssql\Simple.Extensions.Mssql.csproj", "{93F67F55-45F1-49E9-9D49-12DE8B2F6748}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simple.Extensions.Web", "Simple.Extensions.Web\Simple.Extensions.Web.csproj", "{29165853-8FE5-4315-9FFE-E47593AD9820}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{93F67F55-45F1-49E9-9D49-12DE8B2F6748}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93F67F55-45F1-49E9-9D49-12DE8B2F6748}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93F67F55-45F1-49E9-9D49-12DE8B2F6748}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29165853-8FE5-4315-9FFE-E47593AD9820}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29165853-8FE5-4315-9FFE-E47593AD9820}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29165853-8FE5-4315-9FFE-E47593AD9820}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29165853-8FE5-4315-9FFE-E47593AD9820}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

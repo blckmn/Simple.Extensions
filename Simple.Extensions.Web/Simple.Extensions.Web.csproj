@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="microsoft.aspnetcore.diagnostics" Version="2.2.0" />
+    <PackageReference Include="microsoft.aspnetcore.http" Version="2.2.2" />
+  </ItemGroup>
+
+</Project>
