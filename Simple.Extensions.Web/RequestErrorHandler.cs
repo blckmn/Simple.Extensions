@@ -3,12 +3,20 @@ using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 
 namespace Simple.Extensions.Web
 {
-    public static class RequestErrorHandler
+    public class RequestErrorHandler
     {
-        public static async Task Handler(HttpContext context)
+        private readonly ILogger<RequestErrorHandler> _logger;
+
+        public RequestErrorHandler(ILogger<RequestErrorHandler> logger)
+        {
+            _logger = logger;
+        }
+
+        public async Task HandleError(HttpContext context)
         {
             var response = context.Response;
             response.StatusCode = 500;
@@ -18,6 +26,9 @@ namespace Simple.Extensions.Web
 
             if (exception != null)
             {
+                var message = exception.Message;
+                var id = Guid.NewGuid();
+
                 switch (exception)
                 {
                     case BadFormatException _:
@@ -29,12 +40,17 @@ namespace Simple.Extensions.Web
                     case NotFoundException _:
                         response.StatusCode = (int)HttpStatusCode.NotFound;
                         break;
+                    default:
+                        _logger?.LogError(exception, message);
+                        message = $"An error occurred. Reference: {id}";
+                        break;
                 }
 
-                await response.WriteAsync($"{exception.Message}");
+                await response.WriteAsync($"{message}");
             }
 
             await response.WriteAsync(new string(' ', 512)); // IE padding
+            await response.WriteAsync("\n\n\n");
         }
     }
 
