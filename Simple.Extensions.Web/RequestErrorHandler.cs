@@ -11,6 +11,11 @@ namespace Simple.Extensions.Web
     {
         private readonly ILogger<RequestErrorHandler> _logger;
 
+        public RequestErrorHandler()
+        {
+            _logger = null;
+        }
+        
         public RequestErrorHandler(ILogger<RequestErrorHandler> logger)
         {
             _logger = logger;
@@ -40,6 +45,12 @@ namespace Simple.Extensions.Web
                     case NotFoundException _:
                         response.StatusCode = (int)HttpStatusCode.NotFound;
                         break;
+                    case ConflictException _:
+                        response.StatusCode = (int)HttpStatusCode.Conflict;
+                        break;
+                    case CustomHttpResponseException e:
+                        response.StatusCode = e.Code;
+                        break;
                     default:
                         _logger?.LogError(exception, message);
                         message = $"An error occurred. Reference: {id}";
@@ -67,5 +78,19 @@ namespace Simple.Extensions.Web
     public class NotFoundException : Exception
     {
         public NotFoundException(string message) : base(message) { }
+    }
+
+    public class ConflictException : Exception
+    {
+        public ConflictException(string message) : base(message) { }
+    }
+
+    public class CustomHttpResponseException : Exception
+    {
+        public int Code { get; set; }
+        public CustomHttpResponseException(int code, string message) : base(message)
+        {
+            Code = code;
+        }
     }
 }
