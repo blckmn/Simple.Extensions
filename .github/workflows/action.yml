@@ -4,6 +4,7 @@ on:
   push:
     branches:
     - master
+    - release
 
 jobs:
   build:
@@ -11,11 +12,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@master
     - uses: actions/setup-dotnet@v1
       with:
         dotnet-version: '2.2.x'
-    - name: Run the script
+
+    - if: github.ref == 'refs/heads/master' 
+      name: Run the build script
       run: ./build/build.sh
+
+    - if: github.ref == 'refs/heads/release' 
+      name: Run the build script
+      run: ./build/build.sh deploy
       env:
         NUGET_AUTH_TOKEN: ${{secrets.NUGET_AUTH_TOKEN}}

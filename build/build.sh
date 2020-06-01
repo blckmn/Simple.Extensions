@@ -9,7 +9,7 @@ minor="3"
 basepath="${PWD}"
 artifacts="${basepath}/artifacts"
 nuget_server="https://www.nuget.org/api/v2/package"
-revision=${GITHUB_REF:="alpha"}
+branch=${GITHUB_REF:="unknown"}
 buildnumber=${GITHUB_RUN_NUMBER:=1}
 version="${major}.${minor}.${buildnumber}"
 
@@ -21,12 +21,10 @@ fi
 
 echo "Base path: ${basepath}"
 echo "Artifacts: ${artifacts}"
-echo "Revision:  ${revision}"
+echo "Branch:    ${branch}"
 echo "Build #:   ${buildnumber}"
 echo "Version:   ${version}"
-echo "Secret:    ${NUGET_AUTH_TOKEN}"
-echo "BUILD:     ${BUILD_NUMBER}"
-echo "BRANCH:    ${BRANCH}"
+echo "Secret:    ${NUGET_AUTH_TOKEN:="not supplied"}"
 
 dotnet nuget locals all --clear
 
