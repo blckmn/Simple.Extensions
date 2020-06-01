@@ -1,10 +1,9 @@
-name: CI
+name: CI - Build only
 
 on: 
   push:
     branches:
     - master
-    - release
 
 jobs:
   build:
@@ -20,9 +19,3 @@ jobs:
     - if: github.ref == 'refs/heads/master' 
       name: Run the build script
       run: ./build/build.sh
-
-    - if: github.ref == 'refs/heads/release' 
-      name: Run the build script
-      run: ./build/build.sh deploy
-      env:
-        NUGET_AUTH_TOKEN: ${{secrets.NUGET_AUTH_TOKEN}}
