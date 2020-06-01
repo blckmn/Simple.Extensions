@@ -4,18 +4,15 @@ set -e
 
 # version
 major="2"
-minor="2"
+minor="3"
 
 basepath="${PWD}"
 artifacts="${basepath}/artifacts"
 nuget_server="https://www.nuget.org/api/v2/package"
-revision=${TRAVIS_BRANCH:="alpha"}
-buildnumber=${TRAVIS_BUILD_NUMBER:=1}
+revision=${GITHUB_REF:="alpha"}
+buildnumber=${GITHUB_RUN_NUMBER:=1}
 version="${major}.${minor}.${buildnumber}"
 
-if [ "${revision}" != "release" ]; then
-  version="${version}-${revision}"
-fi
 export VERSION=${version}
 
 if [ -d ${artifacts} ]; then  
@@ -27,6 +24,9 @@ echo "Artifacts: ${artifacts}"
 echo "Revision:  ${revision}"
 echo "Build #:   ${buildnumber}"
 echo "Version:   ${version}"
+echo "Secret:    ${NUGET_AUTH_TOKEN}"
+echo "BUILD:     ${BUILD_NUMBER}"
+echo "BRANCH:    ${BRANCH}"
 
 dotnet nuget locals all --clear
 
@@ -37,5 +37,5 @@ dotnet build -c Release
 if [ "${1}" == "deploy" ]; then
   dotnet pack -c Release -o ${artifacts} /p:PackageVersion=${version} --no-dependencies
 
-  dotnet nuget push "${artifacts}/Simple*.nupkg" -s ${nuget_server} -k ${NUGET_ACCESS_KEY}
+  dotnet nuget push "${artifacts}/Simple*.nupkg" -s ${nuget_server} -k ${NUGET_AUTH_TOKEN}
 fi
