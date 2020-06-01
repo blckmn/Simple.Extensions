@@ -115,8 +115,17 @@ namespace Simple.Extensions.Npgsql
             }
         }
 
-        public async Task<long> NonQuery(string sql, Action<NpgsqlParameterCollection> paramAction)
+        public async Task<long> NonQuery(string sql, Action<NpgsqlParameterCollection> paramAction, NpgsqlTransaction transaction = null)
         {
+            if (transaction != null)
+            {
+                using (var command = new NpgsqlCommand(sql, transaction.Connection, transaction))
+                {
+                    paramAction?.Invoke(command.Parameters);
+                    return await command.ExecuteNonQueryAsync();
+                }
+            }
+
             using (var connection = CreateConnection())
             {
                 await connection.OpenAsync();
@@ -128,17 +137,16 @@ namespace Simple.Extensions.Npgsql
             }
         }
 
-        public async Task<long> NonQuery(string sql, Action<NpgsqlParameterCollection> paramAction, NpgsqlTransaction transaction)
+        public async Task<T> Scalar<T>(string sql, Action<NpgsqlParameterCollection> paramAction = null) where T : class
         {
-            if (transaction == null)
+            using (var connection = CreateConnection())
             {
-                return await NonQuery(sql, paramAction);
-            }
-
-            using (var command = new NpgsqlCommand(sql, transaction.Connection, transaction))
-            {
-                paramAction?.Invoke(command.Parameters);
-                return await command.ExecuteNonQueryAsync();
+                await connection.OpenAsync();
+                using (var command = new NpgsqlCommand(sql, connection))
+                {
+                    paramAction?.Invoke(command.Parameters);
+                    return (await command.ExecuteScalarAsync() as T);
+                }
             }
         }
     }
