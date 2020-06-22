@@ -39,8 +39,12 @@ namespace Simple.Extensions.Web
                     case BadFormatException _:
                         response.StatusCode = (int)HttpStatusCode.BadRequest;
                         break;
+                    case UnAuthorizedException _:
                     case NoPermissionException _:
                         response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                        break;
+                    case ForbiddenException _:
+                        response.StatusCode = (int)HttpStatusCode.Forbidden;
                         break;
                     case NotFoundException _:
                         response.StatusCode = (int)HttpStatusCode.NotFound;
@@ -62,36 +66,6 @@ namespace Simple.Extensions.Web
 
             await response.WriteAsync(new string(' ', 512)); // IE padding
             await response.WriteAsync("\n\n\n");
-        }
-    }
-
-    public class BadFormatException : Exception
-    {
-        public BadFormatException(string message) : base(message) { }
-    }
-
-    public class NoPermissionException : Exception
-    {
-        public NoPermissionException(string message) : base(message) { }
-    }
-
-    public class NotFoundException : Exception
-    {
-        public NotFoundException() : base() {}
-        public NotFoundException(string message) : base(message) { }
-    }
-
-    public class ConflictException : Exception
-    {
-        public ConflictException(string message) : base(message) { }
-    }
-
-    public class CustomHttpResponseException : Exception
-    {
-        public int Code { get; set; }
-        public CustomHttpResponseException(int code, string message) : base(message)
-        {
-            Code = code;
         }
     }
 }
