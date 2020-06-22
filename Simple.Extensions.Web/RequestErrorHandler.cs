@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Reflection.Metadata;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
@@ -21,7 +22,19 @@ namespace Simple.Extensions.Web
             _logger = logger;
         }
 
+        private string DefaultAction(Exception exception, HttpResponse response)
+        {
+            var id = Guid.NewGuid();
+            _logger?.LogError(exception, exception.Message);
+            return $"An error occurred. Reference: {id}";
+        }
+
         public async Task HandleError(HttpContext context)
+        {
+            await HandleError(context, DefaultAction);
+        }
+
+        public async Task HandleError(HttpContext context, Func<Exception, HttpResponse, string> action)
         {
             var response = context.Response;
             response.StatusCode = 500;
@@ -32,7 +45,6 @@ namespace Simple.Extensions.Web
             if (exception != null)
             {
                 var message = exception.Message;
-                var id = Guid.NewGuid();
 
                 switch (exception)
                 {
@@ -56,12 +68,14 @@ namespace Simple.Extensions.Web
                         response.StatusCode = e.Code;
                         break;
                     default:
-                        _logger?.LogError(exception, message);
-                        message = $"An error occurred. Reference: {id}";
+                        message = action?.Invoke(exception, response);
                         break;
                 }
 
-                await response.WriteAsync($"{message}");
+                if (message != null)
+                {
+                    await response.WriteAsync($"{message}");
+                }
             }
 
             await response.WriteAsync(new string(' ', 512)); // IE padding
