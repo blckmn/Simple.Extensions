@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simple.Extensions.Mssql", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simple.Extensions.Web", "Simple.Extensions.Web\Simple.Extensions.Web.csproj", "{29165853-8FE5-4315-9FFE-E47593AD9820}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simple.Extensions.Collection", "Simple.Extensions.Collection\Simple.Extensions.Collection.csproj", "{3A5B8477-B0D1-4AC5-9A7D-C90B8E481868}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{29165853-8FE5-4315-9FFE-E47593AD9820}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29165853-8FE5-4315-9FFE-E47593AD9820}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29165853-8FE5-4315-9FFE-E47593AD9820}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A5B8477-B0D1-4AC5-9A7D-C90B8E481868}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A5B8477-B0D1-4AC5-9A7D-C90B8E481868}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A5B8477-B0D1-4AC5-9A7D-C90B8E481868}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A5B8477-B0D1-4AC5-9A7D-C90B8E481868}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

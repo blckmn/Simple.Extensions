@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>BLCKMN</Authors>
+    <PackageProjectUrl>https://github.com/blckmn/Simple.Extensions</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/blckmn/Simple.Extensions</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+
+    <Description>Simple Extension Library for some basic and handy collection extensions.</Description>
+    <Copyright>Copyright © BLCKMN 2018</Copyright>
+    <Summary>A suite of simple collection extensions.</Summary>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <Title>Simple.Extensions.Collection</Title>
+    <PackageId>Simple.Extensions.Collection</PackageId>
+    <PackageTags>Collection Extension</PackageTags>
+  </PropertyGroup>
+
+</Project>
