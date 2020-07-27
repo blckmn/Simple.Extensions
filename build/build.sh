@@ -3,8 +3,8 @@
 set -e
 
 # version
-major="2"
-minor="3"
+major="3"
+minor="1"
 
 basepath="${PWD}"
 artifacts="${basepath}/artifacts"
