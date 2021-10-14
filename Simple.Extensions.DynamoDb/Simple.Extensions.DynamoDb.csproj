@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>BLCKMN</Authors>
+    <PackageProjectUrl>https://github.com/blckmn/Simple.Extensions</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/blckmn/Simple.Extensions</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+
+    <Description>Simple Extension Library for some basic and handy AWS DynamoDb extensions.</Description>
+    <Copyright>Copyright © BLCKMN 2018</Copyright>
+    <Summary>A suite of simple AWS DynamoDb extensions.</Summary>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <Title>Simple.Extensions.DynamoDb</Title>
+    <PackageId>Simple.Extensions.DynamoDb</PackageId>
+    <PackageTags>AWS DynamoDb Extension</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.3.106.42" />
+  </ItemGroup>
+
+</Project>
