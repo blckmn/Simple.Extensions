@@ -9,13 +9,13 @@
     <RepositoryUrl>https://github.com/blckmn/Simple.Extensions</RepositoryUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
 
-    <Description>Simple Extension Library for some basic and handy string extensions.</Description>
+    <Description>Simple Extension Library for quick Json (to and from) extensions.</Description>
     <Copyright>Copyright © BLCKMN 2018</Copyright>
-    <Summary>A suite of simple string extensions.</Summary>
+    <Summary>A couple of handy Json extensions.</Summary>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <Title>Simple.Extensions.String</Title>
-    <PackageId>Simple.Extensions.String</PackageId>
-    <PackageTags>String Extension</PackageTags>
+    <Title>Simple.Extensions.Json</Title>
+    <PackageId>Simple.Extensions.Json</PackageId>
+    <PackageTags>Json Extension</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
