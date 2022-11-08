@@ -2,16 +2,16 @@
 
 set -e
 
-# version
-major="3"
-minor="1"
-
 basepath="${PWD}"
 artifacts="${basepath}/artifacts"
 nuget_server="https://www.nuget.org/api/v2/package"
 branch=${GITHUB_REF:="unknown"}
 buildnumber=${GITHUB_RUN_NUMBER:=1}
-version="${major}.${minor}.${buildnumber}"
+version="unused"
+
+if [ "${1}" == "deploy" ]; then
+version=${GITHUB_REF_NAME}
+fi
 
 export VERSION=${version}
 
